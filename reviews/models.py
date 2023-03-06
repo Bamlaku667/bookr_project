@@ -8,4 +8,5 @@ class Publisher(models.Model):
             help_text="The name of the publisher")
     
     website = models.URLField(help_text = "the company's website")
-
+    email = models.EmailField(\
+        help_text="The publisher's email address.")
