@@ -11,6 +11,9 @@ class Publisher(models.Model):
     website = models.URLField(help_text = "the company's website")
     email = models.EmailField(\
         help_text="The publisher's email address.")
+    
+    def __str__(self):
+        return self.name
 
 
 class Contributor(models.Model):
@@ -25,7 +28,11 @@ class Contributor(models.Model):
     
     email = models.EmailField(\
         help_text="The contact email of the contributor.")
-
+        
+    def __str__(self):
+        return self.first_names
+    
+    
 class Book(models.Model):
     """A publishe book """
     title = models.TextField(\
@@ -45,6 +52,9 @@ class Book(models.Model):
     
     contributor = models.ManyToManyField('Contributor', through="BookContributor")
 
+
+    def __str__(self):
+        return self.title
 
 
 
@@ -68,5 +78,6 @@ class Reviews(models.Model):
     date_edited = models.DateTimeField(null=True, help_text= " The date and time the review was last edited")
     creator = models.ForeignKey(auth.get_user_model(), on_delete=models.CASCADE)
     book = models.ForeignKey(Book, on_delete= models.CASCADE, help_text="The book that this review is for.")
+
 
 
