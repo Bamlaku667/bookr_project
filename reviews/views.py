@@ -5,6 +5,9 @@ from .utils import average_rating
 from django.shortcuts import render
 
 
+def home_page(request):
+    return render(request, 'reviews/base.html')
+
 def book_list(request):
     books = Book.objects.all()
     book_list = []
